@@ -1,0 +1,225 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'lib/leaflet/leaflet.css' %}"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <script
+      src="{% static 'lib/leaflet/leaflet.js' %}"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+    <title>Madagascar Map</title>
+  </head>
+
+  <body class="container-fluid" style="padding: 0">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-success mb-5"
+      aria-label="Fifth navbar example"
+    >
+      <div class="container-fluid">
+        <h1 class="navbar-brand d-flex align-items-center fs-4 text-white mb-0">
+          <img
+            src="{% static 'img/road.png' %}"
+            width="38px"
+            height="30px"
+            class="me-3"
+            alt="Mada"
+            style="border-radius: 20px"
+          />
+          Roads
+        </h1>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbars"
+          aria-controls="navbars"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbars">
+          <form
+            class="d-flex justify-content-between ms-auto"
+            action="{% url 'road' %}"
+            method="POST"
+          >
+            {% csrf_token %}
+            <select name="nr" class="form-select">
+              <option value="RNP 2">RN 2</option>
+              <option value="RNP 4">RN 4</option>
+              <option value="RNP 7">RN 7</option>
+            </select>
+            <input
+              type="submit"
+              name="send"
+              value="Choose"
+              style="margin: 0 5px"
+            />
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="row px-5" style="width: inherit">
+      <div class="col-md-6 d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+          <header class="map-top-label shadow bg-success">
+            Madagascar Map
+          </header>
+          <div id="map"></div>
+        </div>
+
+        <div class="d-flex flex-column justify-content-end">
+          <ul class="m-0">
+            <li>
+              School :
+              <span
+                ><img
+                  src="{% static 'img/school.png' %}"
+                  style="height: 20px; width: 20px"
+              /></span>
+            </li>
+            <li>
+              Hospital :
+              <span
+                ><img
+                  src="{% static 'img/hospital.png' %}"
+                  style="height: 20px; width: 20px"
+              /></span>
+            </li>
+            <li>
+              Degradation :
+              <span
+                class="mx-1"
+                style="
+                  color: black;
+                  background-color: black;
+                  width: 20px;
+                  border-radius: 20px;
+                  padding: 0 5px;
+                "
+                >xxxxx</span
+              >
+            </li>
+            <li>
+              RN2 :
+              <span
+                class="mx-1"
+                style="color: red; background-color: red; width: 20px"
+                >xxxxx</span
+              >
+            </li>
+            <li>
+              RN4 :
+              <span
+                class="mx-1"
+                style="color: blue; background-color: blue; width: 20px"
+                >xxxxx</span
+              >
+            </li>
+            <li>
+              RN7 :
+              <span
+                class="mx-1"
+                style="color: green; background-color: green; width: 20px"
+                >xxxxx</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="text-center">Detail :</h3>
+
+        <div class="container">
+          <div class="row shadow d-flex align-items-center mb-1 pt-3">
+            <p class="col-md-7"><b>Location</b></p>
+            <p class="col-md-3"><b>Road No</b></p>
+            <p class="col-md-2"><b>Level</b></p>
+          </div>
+
+          {% for degradation in selected_nr %}
+          <div class="row shadow d-flex align-items-center mb-1">
+            <p class="col-md-7">
+              {{ degradation.starts }} - {{ degradation.ends }}
+            </p>
+            <p class="col-md-3">{{ degradation.roadno }}</p>
+            <p class="col-md-2">{{ degradation.level }}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <h3 class="text-center mt-5">Reparation :</h3>
+        <div class="container">
+          <div class="row shadow d-flex align-items-center mb-1 pt-3">
+            <p class="col-md-5"><b>For</b></p>
+            <p class="col-md-3"><b>Type</b></p>
+            <p class="col-md-2"><b>Cost</b></p>
+            <p class="col-md-2"><b>Total</b></p>
+          </div>
+
+          {% for degradation in selected_nr %}
+          <div class="row shadow d-flex align-items-center mb-1">
+            <p class="col-md-5">
+              {{ degradation.starts }} - {{ degradation.ends }}
+            </p>
+            <p class="col-md-3">{{ degradation.surftype }}</p>
+            <p class="col-md-2">{{ "X" }}</p>
+            <p class="col-md-2">{{ "Y" }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script>
+      L.geoJSON({{ rn2| safe }}, { style: rn2_style }).addTo(map);
+      L.geoJSON({{ rn4| safe }}, { style: rn4_style }).addTo(map);
+      L.geoJSON({{ rn7| safe }}, { style: rn7_style }).addTo(map);
+
+      L.geoJSON({{ degradations| safe }}, { style: degradation_style }).addTo(map);
+
+      let hospitals = {{ hospitals|safe }};
+      let hospitalIcon = L.icon({
+        iconUrl: "{% static 'img/hospital.png' %}",
+        iconSize: [20, 20],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
+      for(let i = 0; i < hospitals.length; i++) {
+        let coordinate = [hospitals[i].coordinates[1], hospitals[i].coordinates[0]]
+        L.marker(coordinate, {icon: hospitalIcon}).addTo(map);
+      }
+
+      let schoolIcon = L.icon({
+        iconUrl: "{% static 'img/school.png' %}",
+        iconSize: [20, 20],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
+
+      L.marker([-18.0, 48.0], {icon: schoolIcon}).addTo(map);
+      L.marker([-19.0, 47.0], {icon: schoolIcon}).addTo(map);
+    </script>
+  </body>
+</html>

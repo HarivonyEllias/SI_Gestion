@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/choose.css' %}" />
+    
+    <title>SI_Gestion - Choose an option</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/Compta-ico.png' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+			<h2>Create</h2>
+			<p>This option allows you to create something new.</p>
+			<a href="{% url 'form' %} "><button class="create-btn">Create</button></a>
+		</div>
+		<div class="box">
+			<h2>Select</h2>
+			<p>This option allows you to select something that already exists.</p>
+			<a href="#"><button class="select-btn">Select</button></a>
+		</div>
+  </div>
+  
+</body>
+</html>
