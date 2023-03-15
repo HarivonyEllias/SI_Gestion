@@ -1,0 +1,79 @@
+/* Container and box styles from previous example */
+body{
+    background-image: url("../img/Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+   
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto;
+    width: 75%;
+    height: 350px;
+}
+
+.box {
+    width: 42%;
+    height: 350px;
+    margin: 15% auto ;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #f8f8f8;
+    text-align: center;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.create-btn,
+.select-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.create-btn:hover,
+.select-btn:hover {
+    background-color: #0069d9;
+    text-decoration: none;
+}
+
+/* Header styles */
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+
+
+
+/* NOM SOCIETE
+OBJET
+SIEGE
+ADRESSE D'EXPLOITATION
+NOM DU DIRIGEANT
+DATE DE CREATION
+NUMERO D"IDENTITE FISCALE
+NUMERO STATISTIQUE
+NUMERO REGISTRE DE COMMERCE
+STATUS
+DEVISE TENUE DE COMPTE */

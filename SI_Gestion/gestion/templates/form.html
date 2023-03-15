@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+    
+    <title>SI_Gestion - Choose an option</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/Compta-ico.png' %}">
+</head>
+<body>
+    <div style="width:100%;padding:20px;background-color:#3D9EEF;font-family:cursive;font-size:32pt;color:white">
+        MyCompta-App</div>
+    <div class="container">
+        
+        <h1>Register new Company </h1>
+        <form action="{% url 'choose' %}">
+            <form>
+                <div style="width:100%">  
+                    <label for="nom-societe">Nom société:</label>
+                    <input type="text" id="nom-societe" name="nom-societe" style="height:15px;width:40%;margin-left:37px">
+                    <label for="objet" style="margin-left:1%">Objet:</label>
+                    <input type="text" id="objet" name="objet" style="height:15px;width:35%;">
+                </div>
+
+                <div style="margin-top:25px;width:100%">
+                    <label for="siege" style="" >Siège:</label>
+                    <input type="text" id="siege" name="siege" style="height:15px;width:40%;margin-left:89px" >
+
+                    <label for="adresse-exploitation" style="margin-left:1%">Adresse d'exploitation:</label>
+                    <input type="text" id="adresse-exploitation" name="adresse-exploitation" style="height:15px;width:26%;margin-left: 10px;">
+                </div>
+                
+                <div style="margin-top:25px;width:100%" >
+                    <label for="nom-dirigeant">Nom du dirigeant:</label>
+                    <input type="text" id="nom-dirigeant" name="nom-dirigeant" style="height:15px;width:30%" >
+
+                    <label for="date-creation"  style="margin-left:1%">Date de création:</label>
+                    <input type="date" id="date-creation" name="date-creation" style="height:15px;width:20%" >
+                </div>
+
+                <div style="margin-top:25px;width:125%">
+                    <label for="num-identite-fiscale">Numéro d'identité fiscale:</label>
+                    <input type="text" id="num-identite-fiscale" name="num-identite-fiscale">
+
+                    <label for="num-statistique">Numéro statistique:</label>
+                    <input type="text" id="num-statistique" name="num-statistique">
+
+                    <label for="num-registre-commerce">Numéro registre de commerce:</label>
+                    <input type="text" id="num-registre-commerce" name="num-registre-commerce">
+                </div>
+
+                <div style="margin-top:25px;width:125%">
+                    <label for="status">Status:</label><br>
+                    <input type="text" id="status" name="status" style="height:150px;width:72%">
+                </div>
+                <div style="margin-top:25px;width:125%">
+                
+                    <label for="devise-tenue-compte">Devise tenue de compte:</label>
+                    <input type="text" id="devise-tenue-compte" name="devise-tenue-compte" style="height:15px;width:20%">
+
+                </div>
+                <div style="text-align: end;width: 100%;">
+                    <a href="{% url 'choose' %}"><button >Cancel</button></a>
+                    <input type="submit" value="Register">
+                </div>
+        </form>
+    </div>
+</body>
+</html>
