@@ -18,3 +18,12 @@ class Infosociete(models.Model):
     class Meta:
         managed=False
         db_table = 'infosociete' 
+
+class CountSociete(models.Model):
+    idcount_societe=models.AutoField(primary_key=True)
+    idsociete=models.IntegerField()
+    mot_de_passe = models.CharField(max_length=100)
+    
+    class Meta:
+        managed=False
+        db_table = 'count_societe' 

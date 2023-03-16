@@ -16,3 +16,10 @@ CREATE TABLE infosociete (
     devise_compte VARCHAR(255)
 );
 
+CREATE TABLE count_societe(
+    idcount_societe serial primary key,
+    idsociete integer,
+    mot_de_passe VARCHAR(100),
+    foreign key (idsociete) references infosociete(idsociete)
+);
+

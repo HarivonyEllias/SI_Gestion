@@ -1,0 +1,26 @@
+{% block content %}
+<table border='1'>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Objet</th>
+            <th>Siege</th>
+            <th>Adresse d'exploitation</th>
+            <th>Dirigeant</th>
+            <th>Date de creation</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for societe in societes %}
+        <tr>
+            <td><a href="{% url 'get_id_name' idsociete=societe.idsociete nom=societe.nom %}">{{ societe.nom }}</a></td>
+            <td>{{ societe.objet }}</td>
+            <td>{{ societe.siege }}</td>
+            <td>{{ societe.adresse_exploitation }}</td>
+            <td>{{ societe.dirigeant }}</td>
+            <td>{{ societe.date_creation }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
